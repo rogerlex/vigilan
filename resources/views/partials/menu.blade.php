@@ -15,8 +15,210 @@
                 {{ trans('global.dashboard') }}
             </a>
         </li>
+        @can('visitum_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.visita.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/visita") || request()->is("admin/visita/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-table c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.visitum.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('atividade_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.atividades.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/atividades") || request()->is("admin/atividades/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-calendar-alt c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.atividade.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('baixaduam_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.baixaduams.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/baixaduams") || request()->is("admin/baixaduams/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-dollar-sign c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.baixaduam.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('estabelecimento_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.estabelecimentos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/estabelecimentos") || request()->is("admin/estabelecimentos/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-store c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.estabelecimento.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('pendencium_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.pendencia.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/pendencia") || request()->is("admin/pendencia/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-check-double c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.pendencium.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('processo_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.processos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/processos") || request()->is("admin/processos/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-file-alt c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.processo.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('reg_denuncium_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.reg-denuncia.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/reg-denuncia") || request()->is("admin/reg-denuncia/*") ? "c-active" : "" }}">
+                    <i class="fa-fw far fa-comment c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.regDenuncium.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('cadastro_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/cargos*") ? "c-show" : "" }} {{ request()->is("admin/categoria*") ? "c-show" : "" }} {{ request()->is("admin/bairros*") ? "c-show" : "" }} {{ request()->is("admin/formacaos*") ? "c-show" : "" }} {{ request()->is("admin/origens*") ? "c-show" : "" }} {{ request()->is("admin/statuses*") ? "c-show" : "" }} {{ request()->is("admin/tags*") ? "c-show" : "" }} {{ request()->is("admin/tipoestabelecimentos*") ? "c-show" : "" }} {{ request()->is("admin/tipos-processos*") ? "c-show" : "" }} {{ request()->is("admin/colaboradores*") ? "c-show" : "" }} {{ request()->is("admin/identidadegeneros*") ? "c-show" : "" }} {{ request()->is("admin/departamentos*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.cadastro.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('cargo_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.cargos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/cargos") || request()->is("admin/cargos/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-briefcase c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.cargo.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('categorium_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.categoria.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/categoria") || request()->is("admin/categoria/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-list c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.categorium.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('bairro_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.bairros.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/bairros") || request()->is("admin/bairros/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-map-marker-alt c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.bairro.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('formacao_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.formacaos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/formacaos") || request()->is("admin/formacaos/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-graduation-cap c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.formacao.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('origen_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.origens.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/origens") || request()->is("admin/origens/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-map-marked-alt c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.origen.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('status_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.statuses.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/statuses") || request()->is("admin/statuses/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-angle-double-right c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.status.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('tag_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.tags.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tags") || request()->is("admin/tags/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-tags c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.tag.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('tipoestabelecimento_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.tipoestabelecimentos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tipoestabelecimentos") || request()->is("admin/tipoestabelecimentos/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-tag c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.tipoestabelecimento.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('tipos_processo_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.tipos-processos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tipos-processos") || request()->is("admin/tipos-processos/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-clipboard-list c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.tiposProcesso.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('colaboradore_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.colaboradores.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/colaboradores") || request()->is("admin/colaboradores/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-user-lock c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.colaboradore.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('identidadegenero_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.identidadegeneros.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/identidadegeneros") || request()->is("admin/identidadegeneros/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-male c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.identidadegenero.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('departamento_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.departamentos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/departamentos") || request()->is("admin/departamentos/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-address-card c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.departamento.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
         @can('user_management_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/permissions*") ? "c-show" : "" }} {{ request()->is("admin/roles*") ? "c-show" : "" }} {{ request()->is("admin/users*") ? "c-show" : "" }} {{ request()->is("admin/audit-logs*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/permissions*") ? "c-show" : "" }} {{ request()->is("admin/roles*") ? "c-show" : "" }} {{ request()->is("admin/users*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-users c-sidebar-nav-icon">
 
@@ -51,194 +253,6 @@
 
                                 </i>
                                 {{ trans('cruds.user.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('audit_log_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.audit-logs.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/audit-logs") || request()->is("admin/audit-logs/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-file-alt c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.auditLog.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
-        @can('gerenciamento_denuncium_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/denunciacategoria*") ? "c-show" : "" }} {{ request()->is("admin/tags-denuncia*") ? "c-show" : "" }} {{ request()->is("admin/denuncia*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-comment-alt c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.gerenciamentoDenuncium.title') }}
-                </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('denunciacategorium_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.denunciacategoria.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/denunciacategoria") || request()->is("admin/denunciacategoria/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-folder c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.denunciacategorium.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('tags_denuncium_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.tags-denuncia.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tags-denuncia") || request()->is("admin/tags-denuncia/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-tag c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.tagsDenuncium.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('denuncium_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.denuncia.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/denuncia") || request()->is("admin/denuncia/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-comment-dots c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.denuncium.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
-        @can('gerenc_estabelecimento_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/estabelecimentos*") ? "c-show" : "" }} {{ request()->is("admin/bairros*") ? "c-show" : "" }} {{ request()->is("admin/tipo-estabelecimentos*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-store c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.gerencEstabelecimento.title') }}
-                </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('estabelecimento_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.estabelecimentos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/estabelecimentos") || request()->is("admin/estabelecimentos/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-store c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.estabelecimento.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('bairro_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.bairros.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/bairros") || request()->is("admin/bairros/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-map-marker-alt c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.bairro.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('tipo_estabelecimento_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.tipo-estabelecimentos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tipo-estabelecimentos") || request()->is("admin/tipo-estabelecimentos/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-tags c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.tipoEstabelecimento.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
-        @can('ger_processo_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/processos*") ? "c-show" : "" }} {{ request()->is("admin/tipo-processos*") ? "c-show" : "" }} {{ request()->is("admin/tagprocessos*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-file-signature c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.gerProcesso.title') }}
-                </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('processo_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.processos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/processos") || request()->is("admin/processos/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-file-signature c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.processo.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('tipo_processo_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.tipo-processos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tipo-processos") || request()->is("admin/tipo-processos/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-tags c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.tipoProcesso.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('tagprocesso_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.tagprocessos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tagprocessos") || request()->is("admin/tagprocessos/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-tag c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.tagprocesso.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
-        @can('task_management_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/task-statuses*") ? "c-show" : "" }} {{ request()->is("admin/task-tags*") ? "c-show" : "" }} {{ request()->is("admin/tasks*") ? "c-show" : "" }} {{ request()->is("admin/tasks-calendars*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-list c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.taskManagement.title') }}
-                </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('task_status_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.task-statuses.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/task-statuses") || request()->is("admin/task-statuses/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-server c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.taskStatus.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('task_tag_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.task-tags.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/task-tags") || request()->is("admin/task-tags/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-server c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.taskTag.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('task_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.tasks.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tasks") || request()->is("admin/tasks/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-briefcase c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.task.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('tasks_calendar_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.tasks-calendars.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tasks-calendars") || request()->is("admin/tasks-calendars/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-calendar c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.tasksCalendar.title') }}
                             </a>
                         </li>
                     @endcan

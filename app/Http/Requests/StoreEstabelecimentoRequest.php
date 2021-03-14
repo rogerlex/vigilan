@@ -17,77 +17,76 @@ class StoreEstabelecimentoRequest extends FormRequest
     public function rules()
     {
         return [
-            'cnpj'            => [
+            'cnpj'                        => [
                 'string',
                 'required',
                 'unique:estabelecimentos',
             ],
-            'razaosocial'     => [
+            'razaosocial'                 => [
+                'string',
+                'min:3',
+                'required',
+            ],
+            'nomefantasia'                => [
+                'string',
+                'min:3',
+                'required',
+            ],
+            'natureza_do_estabelecimento' => [
                 'string',
                 'required',
             ],
-            'nomefantasia'    => [
+            'tipo'                        => [
                 'string',
                 'nullable',
             ],
-            'natureza'        => [
-                'string',
-                'nullable',
-            ],
-            'tipo'            => [
-                'string',
-                'nullable',
-            ],
-            'area'            => [
+            'area'                        => [
                 'numeric',
             ],
-            'atvprincipal'    => [
+            'atividade_principal'         => [
+                'string',
+                'required',
+            ],
+            'logradouro'                  => [
+                'string',
+                'required',
+            ],
+            'numero'                      => [
                 'string',
                 'nullable',
             ],
-            'atvsecundaria'   => [
+            'ponto_de_referencia'         => [
                 'string',
                 'nullable',
             ],
-            'logradouro'      => [
+            'bairro_id'                   => [
+                'required',
+                'integer',
+            ],
+            'municipio'                   => [
+                'string',
+                'required',
+            ],
+            'uf'                          => [
+                'string',
+                'required',
+            ],
+            'responsavel_tecnico'         => [
                 'string',
                 'nullable',
             ],
-            'numero'          => [
+            'cpf'                         => [
+                'string',
+                'max:14',
+                'nullable',
+            ],
+            'contato'                     => [
                 'string',
                 'nullable',
             ],
-            'referencia'      => [
+            'situacao'                    => [
                 'string',
-                'nullable',
-            ],
-            'uf'              => [
-                'string',
-                'nullable',
-            ],
-            'municipio'       => [
-                'string',
-                'nullable',
-            ],
-            'responsavel'     => [
-                'string',
-                'nullable',
-            ],
-            'foneresponsavel' => [
-                'string',
-                'nullable',
-            ],
-            'cpfresponsavel'  => [
-                'string',
-                'nullable',
-            ],
-            'wattsapp'        => [
-                'string',
-                'nullable',
-            ],
-            'situacao'        => [
-                'string',
-                'nullable',
+                'required',
             ],
         ];
     }

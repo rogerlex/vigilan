@@ -26,7 +26,7 @@
                             {{ trans('cruds.bairro.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.bairro.fields.nome') }}
+                            {{ trans('cruds.bairro.fields.bairro') }}
                         </th>
                         <th>
                             &nbsp;
@@ -43,7 +43,7 @@
                                 {{ $bairro->id ?? '' }}
                             </td>
                             <td>
-                                {{ $bairro->nome ?? '' }}
+                                {{ $bairro->bairro ?? '' }}
                             </td>
                             <td>
                                 @can('bairro_show')
@@ -116,8 +116,8 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
+    order: [[ 2, 'asc' ]],
+    pageLength: 25,
   });
   let table = $('.datatable-Bairro:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){

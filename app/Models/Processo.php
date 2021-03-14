@@ -18,25 +18,26 @@ class Processo extends Model implements HasMedia
     public $table = 'processos';
 
     protected $appends = [
-        'anexos',
+        'anexo_processo',
     ];
 
     protected $dates = [
-        'inicio',
-        'fim',
+        'inicio_processo',
+        'final_processo',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
     protected $fillable = [
+        'numero_do_processo',
         'tipoprocesso_id',
-        'inicio',
-        'fim',
+        'inicio_processo',
+        'final_processo',
         'solicitante',
-        'emailprocesso',
+        'email',
         'descricao',
-        'tipoestabelecimento_id',
+        'status_processo_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -55,43 +56,41 @@ class Processo extends Model implements HasMedia
 
     public function tipoprocesso()
     {
-        return $this->belongsTo(TipoProcesso::class, 'tipoprocesso_id');
+        return $this->belongsTo(TiposProcesso::class, 'tipoprocesso_id');
     }
 
-    public function getInicioAttribute($value)
+    public function getInicioProcessoAttribute($value)
     {
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
     }
 
-    public function setInicioAttribute($value)
+    public function setInicioProcessoAttribute($value)
     {
-        $this->attributes['inicio'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+        $this->attributes['inicio_processo'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
     }
 
-    public function getFimAttribute($value)
+    public function getFinalProcessoAttribute($value)
     {
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
     }
 
-    public function setFimAttribute($value)
+    public function setFinalProcessoAttribute($value)
     {
-        $this->attributes['fim'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+        $this->attributes['final_processo'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
     }
 
-    public function tipoestabelecimento()
+    public function getAnexoProcessoAttribute()
     {
-        return $this->belongsTo(TipoEstabelecimento::class, 'tipoestabelecimento_id');
+        return $this->getMedia('anexo_processo');
     }
 
-    public function getAnexosAttribute()
+    public function estabelecimentos()
     {
-        $files = $this->getMedia('anexos');
-        $files->each(function ($item) {
-            $item->url       = $item->getUrl();
-            $item->thumbnail = $item->getUrl('thumb');
-            $item->preview   = $item->getUrl('preview');
-        });
+        return $this->belongsToMany(Estabelecimento::class);
+    }
 
-        return $files;
+    public function status_processo()
+    {
+        return $this->belongsTo(Status::class, 'status_processo_id');
     }
 }

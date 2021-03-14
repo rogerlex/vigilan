@@ -26,25 +26,25 @@
                             {{ trans('cruds.processo.fields.id') }}
                         </th>
                         <th>
+                            {{ trans('cruds.processo.fields.numero_do_processo') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.processo.fields.tipoprocesso') }}
                         </th>
                         <th>
-                            {{ trans('cruds.processo.fields.inicio') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.processo.fields.fim') }}
+                            {{ trans('cruds.processo.fields.inicio_processo') }}
                         </th>
                         <th>
                             {{ trans('cruds.processo.fields.solicitante') }}
                         </th>
                         <th>
-                            {{ trans('cruds.processo.fields.emailprocesso') }}
+                            {{ trans('cruds.processo.fields.email') }}
                         </th>
                         <th>
-                            {{ trans('cruds.processo.fields.tipoestabelecimento') }}
+                            {{ trans('cruds.processo.fields.estabelecimento') }}
                         </th>
                         <th>
-                            {{ trans('cruds.processo.fields.anexos') }}
+                            {{ trans('cruds.processo.fields.status_processo') }}
                         </th>
                         <th>
                             &nbsp;
@@ -61,29 +61,27 @@
                                 {{ $processo->id ?? '' }}
                             </td>
                             <td>
+                                {{ $processo->numero_do_processo ?? '' }}
+                            </td>
+                            <td>
                                 {{ $processo->tipoprocesso->tipoprocesso ?? '' }}
                             </td>
                             <td>
-                                {{ $processo->inicio ?? '' }}
-                            </td>
-                            <td>
-                                {{ $processo->fim ?? '' }}
+                                {{ $processo->inicio_processo ?? '' }}
                             </td>
                             <td>
                                 {{ $processo->solicitante ?? '' }}
                             </td>
                             <td>
-                                {{ $processo->emailprocesso ?? '' }}
+                                {{ $processo->email ?? '' }}
                             </td>
                             <td>
-                                {{ $processo->tipoestabelecimento->categoriaestabelecimento ?? '' }}
-                            </td>
-                            <td>
-                                @foreach($processo->anexos as $key => $media)
-                                    <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                        <img src="{{ $media->getUrl('thumb') }}">
-                                    </a>
+                                @foreach($processo->estabelecimentos as $key => $item)
+                                    <span class="badge badge-info">{{ $item->cnpj }}</span>
                                 @endforeach
+                            </td>
+                            <td>
+                                {{ $processo->status_processo->status ?? '' }}
                             </td>
                             <td>
                                 @can('processo_show')
@@ -156,7 +154,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
+    order: [[ 4, 'desc' ]],
     pageLength: 50,
   });
   let table = $('.datatable-Processo:not(.ajaxTable)').DataTable({ buttons: dtButtons })

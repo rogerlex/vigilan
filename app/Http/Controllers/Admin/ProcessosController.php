@@ -7,9 +7,10 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyProcessoRequest;
 use App\Http\Requests\StoreProcessoRequest;
 use App\Http\Requests\UpdateProcessoRequest;
+use App\Models\Estabelecimento;
 use App\Models\Processo;
-use App\Models\TipoEstabelecimento;
-use App\Models\TipoProcesso;
+use App\Models\Status;
+use App\Models\TiposProcesso;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -23,7 +24,7 @@ class ProcessosController extends Controller
     {
         abort_if(Gate::denies('processo_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $processos = Processo::with(['tipoprocesso', 'tipoestabelecimento', 'media'])->get();
+        $processos = Processo::with(['tipoprocesso', 'estabelecimentos', 'status_processo', 'media'])->get();
 
         return view('admin.processos.index', compact('processos'));
     }
@@ -32,19 +33,22 @@ class ProcessosController extends Controller
     {
         abort_if(Gate::denies('processo_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $tipoprocessos = TipoProcesso::all()->pluck('tipoprocesso', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $tipoprocessos = TiposProcesso::all()->pluck('tipoprocesso', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $tipoestabelecimentos = TipoEstabelecimento::all()->pluck('categoriaestabelecimento', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $estabelecimentos = Estabelecimento::all()->pluck('cnpj', 'id');
 
-        return view('admin.processos.create', compact('tipoprocessos', 'tipoestabelecimentos'));
+        $status_processos = Status::all()->pluck('status', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.processos.create', compact('tipoprocessos', 'estabelecimentos', 'status_processos'));
     }
 
     public function store(StoreProcessoRequest $request)
     {
         $processo = Processo::create($request->all());
+        $processo->estabelecimentos()->sync($request->input('estabelecimentos', []));
 
-        foreach ($request->input('anexos', []) as $file) {
-            $processo->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('anexos');
+        foreach ($request->input('anexo_processo', []) as $file) {
+            $processo->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('anexo_processo');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -58,32 +62,35 @@ class ProcessosController extends Controller
     {
         abort_if(Gate::denies('processo_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $tipoprocessos = TipoProcesso::all()->pluck('tipoprocesso', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $tipoprocessos = TiposProcesso::all()->pluck('tipoprocesso', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $tipoestabelecimentos = TipoEstabelecimento::all()->pluck('categoriaestabelecimento', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $estabelecimentos = Estabelecimento::all()->pluck('cnpj', 'id');
 
-        $processo->load('tipoprocesso', 'tipoestabelecimento');
+        $status_processos = Status::all()->pluck('status', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.processos.edit', compact('tipoprocessos', 'tipoestabelecimentos', 'processo'));
+        $processo->load('tipoprocesso', 'estabelecimentos', 'status_processo');
+
+        return view('admin.processos.edit', compact('tipoprocessos', 'estabelecimentos', 'status_processos', 'processo'));
     }
 
     public function update(UpdateProcessoRequest $request, Processo $processo)
     {
         $processo->update($request->all());
+        $processo->estabelecimentos()->sync($request->input('estabelecimentos', []));
 
-        if (count($processo->anexos) > 0) {
-            foreach ($processo->anexos as $media) {
-                if (!in_array($media->file_name, $request->input('anexos', []))) {
+        if (count($processo->anexo_processo) > 0) {
+            foreach ($processo->anexo_processo as $media) {
+                if (!in_array($media->file_name, $request->input('anexo_processo', []))) {
                     $media->delete();
                 }
             }
         }
 
-        $media = $processo->anexos->pluck('file_name')->toArray();
+        $media = $processo->anexo_processo->pluck('file_name')->toArray();
 
-        foreach ($request->input('anexos', []) as $file) {
+        foreach ($request->input('anexo_processo', []) as $file) {
             if (count($media) === 0 || !in_array($file, $media)) {
-                $processo->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('anexos');
+                $processo->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('anexo_processo');
             }
         }
 
@@ -94,7 +101,7 @@ class ProcessosController extends Controller
     {
         abort_if(Gate::denies('processo_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $processo->load('tipoprocesso', 'tipoestabelecimento');
+        $processo->load('tipoprocesso', 'estabelecimentos', 'status_processo');
 
         return view('admin.processos.show', compact('processo'));
     }

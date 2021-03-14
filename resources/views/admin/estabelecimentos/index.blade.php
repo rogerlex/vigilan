@@ -32,60 +32,6 @@
                             {{ trans('cruds.estabelecimento.fields.razaosocial') }}
                         </th>
                         <th>
-                            {{ trans('cruds.estabelecimento.fields.nomefantasia') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.natureza') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.tipo') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.area') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.atvprincipal') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.atvsecundaria') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.logradouro') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.numero') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.referencia') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.bairro') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.uf') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.municipio') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.responsavel') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.foneresponsavel') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.cpfresponsavel') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.wattsapp') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.email') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.estabelecimento.fields.situacao') }}
-                        </th>
-                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -104,60 +50,6 @@
                             </td>
                             <td>
                                 {{ $estabelecimento->razaosocial ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->nomefantasia ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->natureza ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->tipo ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->area ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->atvprincipal ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->atvsecundaria ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->logradouro ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->numero ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->referencia ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->bairro->nome ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->uf ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->municipio ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->responsavel ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->foneresponsavel ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->cpfresponsavel ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->wattsapp ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->email ?? '' }}
-                            </td>
-                            <td>
-                                {{ $estabelecimento->situacao ?? '' }}
                             </td>
                             <td>
                                 @can('estabelecimento_show')
@@ -230,8 +122,8 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
-    pageLength: 25,
+    order: [[ 3, 'asc' ]],
+    pageLength: 100,
   });
   let table = $('.datatable-Estabelecimento:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){

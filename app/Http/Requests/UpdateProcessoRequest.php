@@ -17,19 +17,36 @@ class UpdateProcessoRequest extends FormRequest
     public function rules()
     {
         return [
-            'inicio'                 => [
-                'required',
-                'date_format:' . config('panel.date_format'),
-            ],
-            'fim'                    => [
-                'date_format:' . config('panel.date_format'),
-                'nullable',
-            ],
-            'solicitante'            => [
+            'numero_do_processo' => [
                 'string',
                 'required',
             ],
-            'tipoestabelecimento_id' => [
+            'tipoprocesso_id'    => [
+                'required',
+                'integer',
+            ],
+            'inicio_processo'    => [
+                'required',
+                'date_format:' . config('panel.date_format'),
+            ],
+            'final_processo'     => [
+                'date_format:' . config('panel.date_format'),
+                'nullable',
+            ],
+            'solicitante'        => [
+                'string',
+                'required',
+            ],
+            'descricao'          => [
+                'required',
+            ],
+            'estabelecimentos.*' => [
+                'integer',
+            ],
+            'estabelecimentos'   => [
+                'array',
+            ],
+            'status_processo_id' => [
                 'required',
                 'integer',
             ],

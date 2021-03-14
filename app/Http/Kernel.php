@@ -39,8 +39,6 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\AuthGates::class,
             \App\Http\Middleware\SetLocale::class,
-            \App\Http\Middleware\ApprovalMiddleware::class,
-            \App\Http\Middleware\VerificationMiddleware::class,
         ],
         'api' => [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,

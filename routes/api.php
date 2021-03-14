@@ -10,42 +10,67 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Users
     Route::apiResource('users', 'UsersApiController');
 
+    // Categoria
+    Route::post('categoria/media', 'CategoriasApiController@storeMedia')->name('categoria.storeMedia');
+    Route::apiResource('categoria', 'CategoriasApiController', ['except' => ['show']]);
+
+    // Tags
+    Route::apiResource('tags', 'TagsApiController', ['except' => ['show']]);
+
     // Bairros
-    Route::apiResource('bairros', 'BairroApiController');
+    Route::apiResource('bairros', 'BairrosApiController');
 
-    // Denunciacategoria
-    Route::apiResource('denunciacategoria', 'DenunciacategoriaApiController');
+    // Tipoestabelecimentos
+    Route::apiResource('tipoestabelecimentos', 'TipoestabelecimentosApiController');
 
-    // Tags Denuncia
-    Route::apiResource('tags-denuncia', 'TagsDenunciasApiController');
+    // Tipos Processos
+    Route::apiResource('tipos-processos', 'TiposProcessosApiController');
 
-    // Denuncia
-    Route::post('denuncia/media', 'DenunciasApiController@storeMedia')->name('denuncia.storeMedia');
-    Route::apiResource('denuncia', 'DenunciasApiController');
+    // Reg Denuncia
+    Route::post('reg-denuncia/media', 'RegDenunciasApiController@storeMedia')->name('reg-denuncia.storeMedia');
+    Route::apiResource('reg-denuncia', 'RegDenunciasApiController');
 
-    // Estabelecimentos
-    Route::apiResource('estabelecimentos', 'EstabelecimentoApiController');
+    // Statuses
+    Route::apiResource('statuses', 'StatusApiController');
 
-    // Tipo Processos
-    Route::apiResource('tipo-processos', 'TipoProcessoApiController');
-
-    // Tagprocessos
-    Route::apiResource('tagprocessos', 'TagprocessoApiController');
-
-    // Tipo Estabelecimentos
-    Route::apiResource('tipo-estabelecimentos', 'TipoEstabelecimentoApiController');
+    // Origens
+    Route::apiResource('origens', 'OrigensApiController', ['except' => ['show']]);
 
     // Processos
     Route::post('processos/media', 'ProcessosApiController@storeMedia')->name('processos.storeMedia');
     Route::apiResource('processos', 'ProcessosApiController');
 
-    // Task Statuses
-    Route::apiResource('task-statuses', 'TaskStatusApiController');
+    // Estabelecimentos
+    Route::apiResource('estabelecimentos', 'EstabelecimentosApiController');
 
-    // Task Tags
-    Route::apiResource('task-tags', 'TaskTagApiController');
+    // Formacaos
+    Route::apiResource('formacaos', 'FormacaoApiController');
 
-    // Tasks
-    Route::post('tasks/media', 'TaskApiController@storeMedia')->name('tasks.storeMedia');
-    Route::apiResource('tasks', 'TaskApiController');
+    // Cargos
+    Route::apiResource('cargos', 'CargosApiController');
+
+    // Colaboradores
+    Route::apiResource('colaboradores', 'ColaboradoresApiController');
+
+    // Identidadegeneros
+    Route::apiResource('identidadegeneros', 'IdentidadegeneroApiController');
+
+    // Departamentos
+    Route::apiResource('departamentos', 'DepartamentosApiController');
+
+    // Atividades
+    Route::post('atividades/media', 'AtividadesApiController@storeMedia')->name('atividades.storeMedia');
+    Route::apiResource('atividades', 'AtividadesApiController');
+
+    // Visita
+    Route::post('visita/media', 'VisitasApiController@storeMedia')->name('visita.storeMedia');
+    Route::apiResource('visita', 'VisitasApiController');
+
+    // Pendencia
+    Route::post('pendencia/media', 'PendenciasApiController@storeMedia')->name('pendencia.storeMedia');
+    Route::apiResource('pendencia', 'PendenciasApiController');
+
+    // Baixaduams
+    Route::post('baixaduams/media', 'BaixaduamsApiController@storeMedia')->name('baixaduams.storeMedia');
+    Route::apiResource('baixaduams', 'BaixaduamsApiController');
 });

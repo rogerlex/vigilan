@@ -9,8 +9,7 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -26,42 +25,41 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
 
-    // Audit Logs
-    Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    // Categoria
+    Route::delete('categoria/destroy', 'CategoriasController@massDestroy')->name('categoria.massDestroy');
+    Route::post('categoria/media', 'CategoriasController@storeMedia')->name('categoria.storeMedia');
+    Route::post('categoria/ckmedia', 'CategoriasController@storeCKEditorImages')->name('categoria.storeCKEditorImages');
+    Route::resource('categoria', 'CategoriasController', ['except' => ['show']]);
+
+    // Tags
+    Route::delete('tags/destroy', 'TagsController@massDestroy')->name('tags.massDestroy');
+    Route::resource('tags', 'TagsController', ['except' => ['show']]);
 
     // Bairros
-    Route::delete('bairros/destroy', 'BairroController@massDestroy')->name('bairros.massDestroy');
-    Route::resource('bairros', 'BairroController');
+    Route::delete('bairros/destroy', 'BairrosController@massDestroy')->name('bairros.massDestroy');
+    Route::resource('bairros', 'BairrosController');
 
-    // Denunciacategoria
-    Route::delete('denunciacategoria/destroy', 'DenunciacategoriaController@massDestroy')->name('denunciacategoria.massDestroy');
-    Route::resource('denunciacategoria', 'DenunciacategoriaController');
+    // Tipoestabelecimentos
+    Route::delete('tipoestabelecimentos/destroy', 'TipoestabelecimentosController@massDestroy')->name('tipoestabelecimentos.massDestroy');
+    Route::resource('tipoestabelecimentos', 'TipoestabelecimentosController');
 
-    // Tags Denuncia
-    Route::delete('tags-denuncia/destroy', 'TagsDenunciasController@massDestroy')->name('tags-denuncia.massDestroy');
-    Route::resource('tags-denuncia', 'TagsDenunciasController');
+    // Tipos Processos
+    Route::delete('tipos-processos/destroy', 'TiposProcessosController@massDestroy')->name('tipos-processos.massDestroy');
+    Route::resource('tipos-processos', 'TiposProcessosController');
 
-    // Denuncia
-    Route::delete('denuncia/destroy', 'DenunciasController@massDestroy')->name('denuncia.massDestroy');
-    Route::post('denuncia/media', 'DenunciasController@storeMedia')->name('denuncia.storeMedia');
-    Route::post('denuncia/ckmedia', 'DenunciasController@storeCKEditorImages')->name('denuncia.storeCKEditorImages');
-    Route::resource('denuncia', 'DenunciasController');
+    // Reg Denuncia
+    Route::delete('reg-denuncia/destroy', 'RegDenunciasController@massDestroy')->name('reg-denuncia.massDestroy');
+    Route::post('reg-denuncia/media', 'RegDenunciasController@storeMedia')->name('reg-denuncia.storeMedia');
+    Route::post('reg-denuncia/ckmedia', 'RegDenunciasController@storeCKEditorImages')->name('reg-denuncia.storeCKEditorImages');
+    Route::resource('reg-denuncia', 'RegDenunciasController');
 
-    // Estabelecimentos
-    Route::delete('estabelecimentos/destroy', 'EstabelecimentoController@massDestroy')->name('estabelecimentos.massDestroy');
-    Route::resource('estabelecimentos', 'EstabelecimentoController');
+    // Statuses
+    Route::delete('statuses/destroy', 'StatusController@massDestroy')->name('statuses.massDestroy');
+    Route::resource('statuses', 'StatusController');
 
-    // Tipo Processos
-    Route::delete('tipo-processos/destroy', 'TipoProcessoController@massDestroy')->name('tipo-processos.massDestroy');
-    Route::resource('tipo-processos', 'TipoProcessoController');
-
-    // Tagprocessos
-    Route::delete('tagprocessos/destroy', 'TagprocessoController@massDestroy')->name('tagprocessos.massDestroy');
-    Route::resource('tagprocessos', 'TagprocessoController');
-
-    // Tipo Estabelecimentos
-    Route::delete('tipo-estabelecimentos/destroy', 'TipoEstabelecimentoController@massDestroy')->name('tipo-estabelecimentos.massDestroy');
-    Route::resource('tipo-estabelecimentos', 'TipoEstabelecimentoController');
+    // Origens
+    Route::delete('origens/destroy', 'OrigensController@massDestroy')->name('origens.massDestroy');
+    Route::resource('origens', 'OrigensController', ['except' => ['show']]);
 
     // Processos
     Route::delete('processos/destroy', 'ProcessosController@massDestroy')->name('processos.massDestroy');
@@ -69,22 +67,53 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('processos/ckmedia', 'ProcessosController@storeCKEditorImages')->name('processos.storeCKEditorImages');
     Route::resource('processos', 'ProcessosController');
 
-    // Task Statuses
-    Route::delete('task-statuses/destroy', 'TaskStatusController@massDestroy')->name('task-statuses.massDestroy');
-    Route::resource('task-statuses', 'TaskStatusController');
+    // Estabelecimentos
+    Route::delete('estabelecimentos/destroy', 'EstabelecimentosController@massDestroy')->name('estabelecimentos.massDestroy');
+    Route::resource('estabelecimentos', 'EstabelecimentosController');
 
-    // Task Tags
-    Route::delete('task-tags/destroy', 'TaskTagController@massDestroy')->name('task-tags.massDestroy');
-    Route::resource('task-tags', 'TaskTagController');
+    // Formacaos
+    Route::delete('formacaos/destroy', 'FormacaoController@massDestroy')->name('formacaos.massDestroy');
+    Route::resource('formacaos', 'FormacaoController');
 
-    // Tasks
-    Route::delete('tasks/destroy', 'TaskController@massDestroy')->name('tasks.massDestroy');
-    Route::post('tasks/media', 'TaskController@storeMedia')->name('tasks.storeMedia');
-    Route::post('tasks/ckmedia', 'TaskController@storeCKEditorImages')->name('tasks.storeCKEditorImages');
-    Route::resource('tasks', 'TaskController');
+    // Cargos
+    Route::delete('cargos/destroy', 'CargosController@massDestroy')->name('cargos.massDestroy');
+    Route::resource('cargos', 'CargosController');
 
-    // Tasks Calendars
-    Route::resource('tasks-calendars', 'TasksCalendarController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+    // Colaboradores
+    Route::delete('colaboradores/destroy', 'ColaboradoresController@massDestroy')->name('colaboradores.massDestroy');
+    Route::resource('colaboradores', 'ColaboradoresController');
+
+    // Identidadegeneros
+    Route::delete('identidadegeneros/destroy', 'IdentidadegeneroController@massDestroy')->name('identidadegeneros.massDestroy');
+    Route::resource('identidadegeneros', 'IdentidadegeneroController');
+
+    // Departamentos
+    Route::delete('departamentos/destroy', 'DepartamentosController@massDestroy')->name('departamentos.massDestroy');
+    Route::resource('departamentos', 'DepartamentosController');
+
+    // Atividades
+    Route::delete('atividades/destroy', 'AtividadesController@massDestroy')->name('atividades.massDestroy');
+    Route::post('atividades/media', 'AtividadesController@storeMedia')->name('atividades.storeMedia');
+    Route::post('atividades/ckmedia', 'AtividadesController@storeCKEditorImages')->name('atividades.storeCKEditorImages');
+    Route::resource('atividades', 'AtividadesController');
+
+    // Visita
+    Route::delete('visita/destroy', 'VisitasController@massDestroy')->name('visita.massDestroy');
+    Route::post('visita/media', 'VisitasController@storeMedia')->name('visita.storeMedia');
+    Route::post('visita/ckmedia', 'VisitasController@storeCKEditorImages')->name('visita.storeCKEditorImages');
+    Route::resource('visita', 'VisitasController');
+
+    // Pendencia
+    Route::delete('pendencia/destroy', 'PendenciasController@massDestroy')->name('pendencia.massDestroy');
+    Route::post('pendencia/media', 'PendenciasController@storeMedia')->name('pendencia.storeMedia');
+    Route::post('pendencia/ckmedia', 'PendenciasController@storeCKEditorImages')->name('pendencia.storeCKEditorImages');
+    Route::resource('pendencia', 'PendenciasController');
+
+    // Baixaduams
+    Route::delete('baixaduams/destroy', 'BaixaduamsController@massDestroy')->name('baixaduams.massDestroy');
+    Route::post('baixaduams/media', 'BaixaduamsController@storeMedia')->name('baixaduams.storeMedia');
+    Route::post('baixaduams/ckmedia', 'BaixaduamsController@storeCKEditorImages')->name('baixaduams.storeCKEditorImages');
+    Route::resource('baixaduams', 'BaixaduamsController');
 
     Route::get('system-calendar', 'SystemCalendarController@index')->name('systemCalendar');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +9,7 @@ use \DateTimeInterface;
 
 class Estabelecimento extends Model
 {
-    use SoftDeletes, Auditable, HasFactory;
+    use SoftDeletes, HasFactory;
 
     public $table = 'estabelecimentos';
 
@@ -24,21 +23,20 @@ class Estabelecimento extends Model
         'cnpj',
         'razaosocial',
         'nomefantasia',
-        'natureza',
+        'natureza_do_estabelecimento',
         'tipo',
         'area',
-        'atvprincipal',
-        'atvsecundaria',
+        'atividade_principal',
+        'atividade_secundaria',
         'logradouro',
         'numero',
-        'referencia',
+        'ponto_de_referencia',
         'bairro_id',
-        'uf',
         'municipio',
-        'responsavel',
-        'foneresponsavel',
-        'cpfresponsavel',
-        'wattsapp',
+        'uf',
+        'responsavel_tecnico',
+        'cpf',
+        'contato',
         'email',
         'situacao',
         'created_at',

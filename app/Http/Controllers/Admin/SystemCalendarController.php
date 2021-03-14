@@ -9,20 +9,12 @@ class SystemCalendarController extends Controller
 {
     public $sources = [
         [
-            'model'      => '\App\Models\Denuncium',
-            'date_field' => 'data_denuncia',
-            'field'      => 'id',
-            'prefix'     => 'Denúncia:',
+            'model'      => '\App\Models\Atividade',
+            'date_field' => 'data_atividade',
+            'field'      => 'vista_num_processo',
+            'prefix'     => 'Proc.:',
             'suffix'     => '',
-            'route'      => 'admin.denuncia.edit',
-        ],
-        [
-            'model'      => '\App\Models\Processo',
-            'date_field' => 'inicio',
-            'field'      => 'id',
-            'prefix'     => 'Processo:',
-            'suffix'     => '',
-            'route'      => 'admin.processos.edit',
+            'route'      => 'admin.atividades.edit',
         ],
     ];
 
