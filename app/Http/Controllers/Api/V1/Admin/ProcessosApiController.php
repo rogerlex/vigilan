@@ -20,15 +20,16 @@ class ProcessosApiController extends Controller
     {
         abort_if(Gate::denies('processo_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ProcessoResource(Processo::with(['tipoprocesso', 'tipoestabelecimento'])->get());
+        return new ProcessoResource(Processo::with(['tipoprocesso', 'estabelecimentos', 'status_processo'])->get());
     }
 
     public function store(StoreProcessoRequest $request)
     {
         $processo = Processo::create($request->all());
+        $processo->estabelecimentos()->sync($request->input('estabelecimentos', []));
 
-        if ($request->input('anexos', false)) {
-            $processo->addMedia(storage_path('tmp/uploads/' . basename($request->input('anexos'))))->toMediaCollection('anexos');
+        if ($request->input('anexo_processo', false)) {
+            $processo->addMedia(storage_path('tmp/uploads/' . basename($request->input('anexo_processo'))))->toMediaCollection('anexo_processo');
         }
 
         return (new ProcessoResource($processo))
@@ -40,23 +41,24 @@ class ProcessosApiController extends Controller
     {
         abort_if(Gate::denies('processo_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ProcessoResource($processo->load(['tipoprocesso', 'tipoestabelecimento']));
+        return new ProcessoResource($processo->load(['tipoprocesso', 'estabelecimentos', 'status_processo']));
     }
 
     public function update(UpdateProcessoRequest $request, Processo $processo)
     {
         $processo->update($request->all());
+        $processo->estabelecimentos()->sync($request->input('estabelecimentos', []));
 
-        if ($request->input('anexos', false)) {
-            if (!$processo->anexos || $request->input('anexos') !== $processo->anexos->file_name) {
-                if ($processo->anexos) {
-                    $processo->anexos->delete();
+        if ($request->input('anexo_processo', false)) {
+            if (!$processo->anexo_processo || $request->input('anexo_processo') !== $processo->anexo_processo->file_name) {
+                if ($processo->anexo_processo) {
+                    $processo->anexo_processo->delete();
                 }
 
-                $processo->addMedia(storage_path('tmp/uploads/' . basename($request->input('anexos'))))->toMediaCollection('anexos');
+                $processo->addMedia(storage_path('tmp/uploads/' . basename($request->input('anexo_processo'))))->toMediaCollection('anexo_processo');
             }
-        } elseif ($processo->anexos) {
-            $processo->anexos->delete();
+        } elseif ($processo->anexo_processo) {
+            $processo->anexo_processo->delete();
         }
 
         return (new ProcessoResource($processo))

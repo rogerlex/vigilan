@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +9,7 @@ use \DateTimeInterface;
 
 class Bairro extends Model
 {
-    use SoftDeletes, Auditable, HasFactory;
+    use SoftDeletes, HasFactory;
 
     public $table = 'bairros';
 
@@ -21,7 +20,7 @@ class Bairro extends Model
     ];
 
     protected $fillable = [
-        'nome',
+        'bairro',
         'created_at',
         'updated_at',
         'deleted_at',

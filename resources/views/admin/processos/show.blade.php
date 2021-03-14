@@ -33,18 +33,18 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.processo.fields.inicio') }}
+                            {{ trans('cruds.processo.fields.inicio_processo') }}
                         </th>
                         <td>
-                            {{ $processo->inicio }}
+                            {{ $processo->inicio_processo }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.processo.fields.fim') }}
+                            {{ trans('cruds.processo.fields.final_processo') }}
                         </th>
                         <td>
-                            {{ $processo->fim }}
+                            {{ $processo->final_processo }}
                         </td>
                     </tr>
                     <tr>
@@ -57,38 +57,40 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.processo.fields.emailprocesso') }}
+                            {{ trans('cruds.processo.fields.email') }}
                         </th>
                         <td>
-                            {{ $processo->emailprocesso }}
+                            {{ $processo->email }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.processo.fields.descricao') }}
+                            {{ trans('cruds.processo.fields.anexo_processo') }}
                         </th>
                         <td>
-                            {!! $processo->descricao !!}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.processo.fields.tipoestabelecimento') }}
-                        </th>
-                        <td>
-                            {{ $processo->tipoestabelecimento->categoriaestabelecimento ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.processo.fields.anexos') }}
-                        </th>
-                        <td>
-                            @foreach($processo->anexos as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
+                            @foreach($processo->anexo_processo as $key => $media)
+                                <a href="{{ $media->getUrl() }}" target="_blank">
+                                    {{ trans('global.view_file') }}
                                 </a>
                             @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.processo.fields.estabelecimento') }}
+                        </th>
+                        <td>
+                            @foreach($processo->estabelecimentos as $key => $estabelecimento)
+                                <span class="label label-info">{{ $estabelecimento->cnpj }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.processo.fields.status_processo') }}
+                        </th>
+                        <td>
+                            {{ $processo->status_processo->status ?? '' }}
                         </td>
                     </tr>
                 </tbody>

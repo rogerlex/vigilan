@@ -11,8 +11,18 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label for="tipoprocesso_id">{{ trans('cruds.processo.fields.tipoprocesso') }}</label>
-                <select class="form-control select2 {{ $errors->has('tipoprocesso') ? 'is-invalid' : '' }}" name="tipoprocesso_id" id="tipoprocesso_id">
+                <label class="required" for="numero_do_processo">{{ trans('cruds.processo.fields.numero_do_processo') }}</label>
+                <input class="form-control {{ $errors->has('numero_do_processo') ? 'is-invalid' : '' }}" type="text" name="numero_do_processo" id="numero_do_processo" value="{{ old('numero_do_processo', $processo->numero_do_processo) }}" required>
+                @if($errors->has('numero_do_processo'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('numero_do_processo') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.processo.fields.numero_do_processo_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="tipoprocesso_id">{{ trans('cruds.processo.fields.tipoprocesso') }}</label>
+                <select class="form-control select2 {{ $errors->has('tipoprocesso') ? 'is-invalid' : '' }}" name="tipoprocesso_id" id="tipoprocesso_id" required>
                     @foreach($tipoprocessos as $id => $tipoprocesso)
                         <option value="{{ $id }}" {{ (old('tipoprocesso_id') ? old('tipoprocesso_id') : $processo->tipoprocesso->id ?? '') == $id ? 'selected' : '' }}>{{ $tipoprocesso }}</option>
                     @endforeach
@@ -25,24 +35,24 @@
                 <span class="help-block">{{ trans('cruds.processo.fields.tipoprocesso_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="inicio">{{ trans('cruds.processo.fields.inicio') }}</label>
-                <input class="form-control date {{ $errors->has('inicio') ? 'is-invalid' : '' }}" type="text" name="inicio" id="inicio" value="{{ old('inicio', $processo->inicio) }}" required>
-                @if($errors->has('inicio'))
+                <label class="required" for="inicio_processo">{{ trans('cruds.processo.fields.inicio_processo') }}</label>
+                <input class="form-control date {{ $errors->has('inicio_processo') ? 'is-invalid' : '' }}" type="text" name="inicio_processo" id="inicio_processo" value="{{ old('inicio_processo', $processo->inicio_processo) }}" required>
+                @if($errors->has('inicio_processo'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('inicio') }}
+                        {{ $errors->first('inicio_processo') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.processo.fields.inicio_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.processo.fields.inicio_processo_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="fim">{{ trans('cruds.processo.fields.fim') }}</label>
-                <input class="form-control date {{ $errors->has('fim') ? 'is-invalid' : '' }}" type="text" name="fim" id="fim" value="{{ old('fim', $processo->fim) }}">
-                @if($errors->has('fim'))
+                <label for="final_processo">{{ trans('cruds.processo.fields.final_processo') }}</label>
+                <input class="form-control date {{ $errors->has('final_processo') ? 'is-invalid' : '' }}" type="text" name="final_processo" id="final_processo" value="{{ old('final_processo', $processo->final_processo) }}">
+                @if($errors->has('final_processo'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('fim') }}
+                        {{ $errors->first('final_processo') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.processo.fields.fim_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.processo.fields.final_processo_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="solicitante">{{ trans('cruds.processo.fields.solicitante') }}</label>
@@ -55,14 +65,14 @@
                 <span class="help-block">{{ trans('cruds.processo.fields.solicitante_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="emailprocesso">{{ trans('cruds.processo.fields.emailprocesso') }}</label>
-                <input class="form-control {{ $errors->has('emailprocesso') ? 'is-invalid' : '' }}" type="email" name="emailprocesso" id="emailprocesso" value="{{ old('emailprocesso', $processo->emailprocesso) }}">
-                @if($errors->has('emailprocesso'))
+                <label for="email">{{ trans('cruds.processo.fields.email') }}</label>
+                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email', $processo->email) }}">
+                @if($errors->has('email'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('emailprocesso') }}
+                        {{ $errors->first('email') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.processo.fields.emailprocesso_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.processo.fields.email_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="descricao">{{ trans('cruds.processo.fields.descricao') }}</label>
@@ -75,29 +85,47 @@
                 <span class="help-block">{{ trans('cruds.processo.fields.descricao_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="tipoestabelecimento_id">{{ trans('cruds.processo.fields.tipoestabelecimento') }}</label>
-                <select class="form-control select2 {{ $errors->has('tipoestabelecimento') ? 'is-invalid' : '' }}" name="tipoestabelecimento_id" id="tipoestabelecimento_id" required>
-                    @foreach($tipoestabelecimentos as $id => $tipoestabelecimento)
-                        <option value="{{ $id }}" {{ (old('tipoestabelecimento_id') ? old('tipoestabelecimento_id') : $processo->tipoestabelecimento->id ?? '') == $id ? 'selected' : '' }}>{{ $tipoestabelecimento }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('tipoestabelecimento'))
+                <label for="anexo_processo">{{ trans('cruds.processo.fields.anexo_processo') }}</label>
+                <div class="needsclick dropzone {{ $errors->has('anexo_processo') ? 'is-invalid' : '' }}" id="anexo_processo-dropzone">
+                </div>
+                @if($errors->has('anexo_processo'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('tipoestabelecimento') }}
+                        {{ $errors->first('anexo_processo') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.processo.fields.tipoestabelecimento_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.processo.fields.anexo_processo_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="anexos">{{ trans('cruds.processo.fields.anexos') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('anexos') ? 'is-invalid' : '' }}" id="anexos-dropzone">
+                <label for="estabelecimentos">{{ trans('cruds.processo.fields.estabelecimento') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                @if($errors->has('anexos'))
+                <select class="form-control select2 {{ $errors->has('estabelecimentos') ? 'is-invalid' : '' }}" name="estabelecimentos[]" id="estabelecimentos" multiple>
+                    @foreach($estabelecimentos as $id => $estabelecimento)
+                        <option value="{{ $id }}" {{ (in_array($id, old('estabelecimentos', [])) || $processo->estabelecimentos->contains($id)) ? 'selected' : '' }}>{{ $estabelecimento }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('estabelecimentos'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('anexos') }}
+                        {{ $errors->first('estabelecimentos') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.processo.fields.anexos_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.processo.fields.estabelecimento_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="status_processo_id">{{ trans('cruds.processo.fields.status_processo') }}</label>
+                <select class="form-control select2 {{ $errors->has('status_processo') ? 'is-invalid' : '' }}" name="status_processo_id" id="status_processo_id" required>
+                    @foreach($status_processos as $id => $status_processo)
+                        <option value="{{ $id }}" {{ (old('status_processo_id') ? old('status_processo_id') : $processo->status_processo->id ?? '') == $id ? 'selected' : '' }}>{{ $status_processo }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('status_processo'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('status_processo') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.processo.fields.status_processo_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
@@ -178,45 +206,41 @@
 </script>
 
 <script>
-    var uploadedAnexosMap = {}
-Dropzone.options.anexosDropzone = {
+    var uploadedAnexoProcessoMap = {}
+Dropzone.options.anexoProcessoDropzone = {
     url: '{{ route('admin.processos.storeMedia') }}',
-    maxFilesize: 2, // MB
-    acceptedFiles: '.jpeg,.jpg,.png,.gif',
+    maxFilesize: 4, // MB
     addRemoveLinks: true,
     headers: {
       'X-CSRF-TOKEN': "{{ csrf_token() }}"
     },
     params: {
-      size: 2,
-      width: 4096,
-      height: 4096
+      size: 4
     },
     success: function (file, response) {
-      $('form').append('<input type="hidden" name="anexos[]" value="' + response.name + '">')
-      uploadedAnexosMap[file.name] = response.name
+      $('form').append('<input type="hidden" name="anexo_processo[]" value="' + response.name + '">')
+      uploadedAnexoProcessoMap[file.name] = response.name
     },
     removedfile: function (file) {
-      console.log(file)
       file.previewElement.remove()
       var name = ''
       if (typeof file.file_name !== 'undefined') {
         name = file.file_name
       } else {
-        name = uploadedAnexosMap[file.name]
+        name = uploadedAnexoProcessoMap[file.name]
       }
-      $('form').find('input[name="anexos[]"][value="' + name + '"]').remove()
+      $('form').find('input[name="anexo_processo[]"][value="' + name + '"]').remove()
     },
     init: function () {
-@if(isset($processo) && $processo->anexos)
-      var files = {!! json_encode($processo->anexos) !!}
-          for (var i in files) {
-          var file = files[i]
-          this.options.addedfile.call(this, file)
-          this.options.thumbnail.call(this, file, file.preview)
-          file.previewElement.classList.add('dz-complete')
-          $('form').append('<input type="hidden" name="anexos[]" value="' + file.file_name + '">')
-        }
+@if(isset($processo) && $processo->anexo_processo)
+          var files =
+            {!! json_encode($processo->anexo_processo) !!}
+              for (var i in files) {
+              var file = files[i]
+              this.options.addedfile.call(this, file)
+              file.previewElement.classList.add('dz-complete')
+              $('form').append('<input type="hidden" name="anexo_processo[]" value="' + file.file_name + '">')
+            }
 @endif
     },
      error: function (file, response) {

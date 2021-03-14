@@ -76,274 +76,378 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 17,
-                'title' => 'audit_log_show',
+                'title' => 'cadastro_access',
             ],
             [
                 'id'    => 18,
-                'title' => 'audit_log_access',
+                'title' => 'categorium_create',
             ],
             [
                 'id'    => 19,
-                'title' => 'gerenc_estabelecimento_access',
+                'title' => 'categorium_edit',
             ],
             [
                 'id'    => 20,
-                'title' => 'bairro_create',
+                'title' => 'categorium_delete',
             ],
             [
                 'id'    => 21,
-                'title' => 'bairro_edit',
+                'title' => 'categorium_access',
             ],
             [
                 'id'    => 22,
-                'title' => 'bairro_show',
+                'title' => 'tag_create',
             ],
             [
                 'id'    => 23,
-                'title' => 'bairro_delete',
+                'title' => 'tag_edit',
             ],
             [
                 'id'    => 24,
-                'title' => 'bairro_access',
+                'title' => 'tag_delete',
             ],
             [
                 'id'    => 25,
-                'title' => 'gerenciamento_denuncium_access',
+                'title' => 'tag_access',
             ],
             [
                 'id'    => 26,
-                'title' => 'denunciacategorium_create',
+                'title' => 'bairro_create',
             ],
             [
                 'id'    => 27,
-                'title' => 'denunciacategorium_edit',
+                'title' => 'bairro_edit',
             ],
             [
                 'id'    => 28,
-                'title' => 'denunciacategorium_show',
+                'title' => 'bairro_show',
             ],
             [
                 'id'    => 29,
-                'title' => 'denunciacategorium_delete',
+                'title' => 'bairro_delete',
             ],
             [
                 'id'    => 30,
-                'title' => 'denunciacategorium_access',
+                'title' => 'bairro_access',
             ],
             [
                 'id'    => 31,
-                'title' => 'tags_denuncium_create',
+                'title' => 'tipoestabelecimento_create',
             ],
             [
                 'id'    => 32,
-                'title' => 'tags_denuncium_edit',
+                'title' => 'tipoestabelecimento_edit',
             ],
             [
                 'id'    => 33,
-                'title' => 'tags_denuncium_show',
+                'title' => 'tipoestabelecimento_show',
             ],
             [
                 'id'    => 34,
-                'title' => 'tags_denuncium_delete',
+                'title' => 'tipoestabelecimento_delete',
             ],
             [
                 'id'    => 35,
-                'title' => 'tags_denuncium_access',
+                'title' => 'tipoestabelecimento_access',
             ],
             [
                 'id'    => 36,
-                'title' => 'denuncium_create',
+                'title' => 'tipos_processo_create',
             ],
             [
                 'id'    => 37,
-                'title' => 'denuncium_edit',
+                'title' => 'tipos_processo_edit',
             ],
             [
                 'id'    => 38,
-                'title' => 'denuncium_show',
+                'title' => 'tipos_processo_show',
             ],
             [
                 'id'    => 39,
-                'title' => 'denuncium_delete',
+                'title' => 'tipos_processo_delete',
             ],
             [
                 'id'    => 40,
-                'title' => 'denuncium_access',
+                'title' => 'tipos_processo_access',
             ],
             [
                 'id'    => 41,
-                'title' => 'estabelecimento_create',
+                'title' => 'reg_denuncium_create',
             ],
             [
                 'id'    => 42,
-                'title' => 'estabelecimento_edit',
+                'title' => 'reg_denuncium_edit',
             ],
             [
                 'id'    => 43,
-                'title' => 'estabelecimento_show',
+                'title' => 'reg_denuncium_show',
             ],
             [
                 'id'    => 44,
-                'title' => 'estabelecimento_delete',
+                'title' => 'reg_denuncium_delete',
             ],
             [
                 'id'    => 45,
-                'title' => 'estabelecimento_access',
+                'title' => 'reg_denuncium_access',
             ],
             [
                 'id'    => 46,
-                'title' => 'ger_processo_access',
+                'title' => 'status_create',
             ],
             [
                 'id'    => 47,
-                'title' => 'tipo_processo_create',
+                'title' => 'status_edit',
             ],
             [
                 'id'    => 48,
-                'title' => 'tipo_processo_edit',
+                'title' => 'status_show',
             ],
             [
                 'id'    => 49,
-                'title' => 'tipo_processo_show',
+                'title' => 'status_delete',
             ],
             [
                 'id'    => 50,
-                'title' => 'tipo_processo_delete',
+                'title' => 'status_access',
             ],
             [
                 'id'    => 51,
-                'title' => 'tipo_processo_access',
+                'title' => 'origen_create',
             ],
             [
                 'id'    => 52,
-                'title' => 'tagprocesso_create',
+                'title' => 'origen_edit',
             ],
             [
                 'id'    => 53,
-                'title' => 'tagprocesso_edit',
+                'title' => 'origen_delete',
             ],
             [
                 'id'    => 54,
-                'title' => 'tagprocesso_show',
+                'title' => 'origen_access',
             ],
             [
                 'id'    => 55,
-                'title' => 'tagprocesso_delete',
-            ],
-            [
-                'id'    => 56,
-                'title' => 'tagprocesso_access',
-            ],
-            [
-                'id'    => 57,
-                'title' => 'tipo_estabelecimento_create',
-            ],
-            [
-                'id'    => 58,
-                'title' => 'tipo_estabelecimento_edit',
-            ],
-            [
-                'id'    => 59,
-                'title' => 'tipo_estabelecimento_show',
-            ],
-            [
-                'id'    => 60,
-                'title' => 'tipo_estabelecimento_delete',
-            ],
-            [
-                'id'    => 61,
-                'title' => 'tipo_estabelecimento_access',
-            ],
-            [
-                'id'    => 62,
                 'title' => 'processo_create',
             ],
             [
-                'id'    => 63,
+                'id'    => 56,
                 'title' => 'processo_edit',
             ],
             [
-                'id'    => 64,
+                'id'    => 57,
                 'title' => 'processo_show',
             ],
             [
-                'id'    => 65,
+                'id'    => 58,
                 'title' => 'processo_delete',
             ],
             [
-                'id'    => 66,
+                'id'    => 59,
                 'title' => 'processo_access',
             ],
             [
+                'id'    => 60,
+                'title' => 'estabelecimento_create',
+            ],
+            [
+                'id'    => 61,
+                'title' => 'estabelecimento_edit',
+            ],
+            [
+                'id'    => 62,
+                'title' => 'estabelecimento_show',
+            ],
+            [
+                'id'    => 63,
+                'title' => 'estabelecimento_delete',
+            ],
+            [
+                'id'    => 64,
+                'title' => 'estabelecimento_access',
+            ],
+            [
+                'id'    => 65,
+                'title' => 'formacao_create',
+            ],
+            [
+                'id'    => 66,
+                'title' => 'formacao_edit',
+            ],
+            [
                 'id'    => 67,
-                'title' => 'task_management_access',
+                'title' => 'formacao_show',
             ],
             [
                 'id'    => 68,
-                'title' => 'task_status_create',
+                'title' => 'formacao_delete',
             ],
             [
                 'id'    => 69,
-                'title' => 'task_status_edit',
+                'title' => 'formacao_access',
             ],
             [
                 'id'    => 70,
-                'title' => 'task_status_show',
+                'title' => 'cargo_create',
             ],
             [
                 'id'    => 71,
-                'title' => 'task_status_delete',
+                'title' => 'cargo_edit',
             ],
             [
                 'id'    => 72,
-                'title' => 'task_status_access',
+                'title' => 'cargo_show',
             ],
             [
                 'id'    => 73,
-                'title' => 'task_tag_create',
+                'title' => 'cargo_delete',
             ],
             [
                 'id'    => 74,
-                'title' => 'task_tag_edit',
+                'title' => 'cargo_access',
             ],
             [
                 'id'    => 75,
-                'title' => 'task_tag_show',
+                'title' => 'colaboradore_create',
             ],
             [
                 'id'    => 76,
-                'title' => 'task_tag_delete',
+                'title' => 'colaboradore_edit',
             ],
             [
                 'id'    => 77,
-                'title' => 'task_tag_access',
+                'title' => 'colaboradore_show',
             ],
             [
                 'id'    => 78,
-                'title' => 'task_create',
+                'title' => 'colaboradore_delete',
             ],
             [
                 'id'    => 79,
-                'title' => 'task_edit',
+                'title' => 'colaboradore_access',
             ],
             [
                 'id'    => 80,
-                'title' => 'task_show',
+                'title' => 'identidadegenero_create',
             ],
             [
                 'id'    => 81,
-                'title' => 'task_delete',
+                'title' => 'identidadegenero_edit',
             ],
             [
                 'id'    => 82,
-                'title' => 'task_access',
+                'title' => 'identidadegenero_show',
             ],
             [
                 'id'    => 83,
-                'title' => 'tasks_calendar_access',
+                'title' => 'identidadegenero_delete',
             ],
             [
                 'id'    => 84,
+                'title' => 'identidadegenero_access',
+            ],
+            [
+                'id'    => 85,
+                'title' => 'departamento_create',
+            ],
+            [
+                'id'    => 86,
+                'title' => 'departamento_edit',
+            ],
+            [
+                'id'    => 87,
+                'title' => 'departamento_show',
+            ],
+            [
+                'id'    => 88,
+                'title' => 'departamento_delete',
+            ],
+            [
+                'id'    => 89,
+                'title' => 'departamento_access',
+            ],
+            [
+                'id'    => 90,
+                'title' => 'atividade_create',
+            ],
+            [
+                'id'    => 91,
+                'title' => 'atividade_edit',
+            ],
+            [
+                'id'    => 92,
+                'title' => 'atividade_show',
+            ],
+            [
+                'id'    => 93,
+                'title' => 'atividade_delete',
+            ],
+            [
+                'id'    => 94,
+                'title' => 'atividade_access',
+            ],
+            [
+                'id'    => 95,
+                'title' => 'visitum_create',
+            ],
+            [
+                'id'    => 96,
+                'title' => 'visitum_edit',
+            ],
+            [
+                'id'    => 97,
+                'title' => 'visitum_show',
+            ],
+            [
+                'id'    => 98,
+                'title' => 'visitum_delete',
+            ],
+            [
+                'id'    => 99,
+                'title' => 'visitum_access',
+            ],
+            [
+                'id'    => 100,
+                'title' => 'pendencium_create',
+            ],
+            [
+                'id'    => 101,
+                'title' => 'pendencium_edit',
+            ],
+            [
+                'id'    => 102,
+                'title' => 'pendencium_show',
+            ],
+            [
+                'id'    => 103,
+                'title' => 'pendencium_delete',
+            ],
+            [
+                'id'    => 104,
+                'title' => 'pendencium_access',
+            ],
+            [
+                'id'    => 105,
+                'title' => 'baixaduam_create',
+            ],
+            [
+                'id'    => 106,
+                'title' => 'baixaduam_edit',
+            ],
+            [
+                'id'    => 107,
+                'title' => 'baixaduam_show',
+            ],
+            [
+                'id'    => 108,
+                'title' => 'baixaduam_delete',
+            ],
+            [
+                'id'    => 109,
+                'title' => 'baixaduam_access',
+            ],
+            [
+                'id'    => 110,
                 'title' => 'profile_password_edit',
             ],
         ];

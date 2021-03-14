@@ -17,9 +17,10 @@ class UpdateBairroRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => [
+            'bairro' => [
                 'string',
-                'nullable',
+                'required',
+                'unique:bairros,bairro,' . request()->route('bairro')->id,
             ],
         ];
     }
